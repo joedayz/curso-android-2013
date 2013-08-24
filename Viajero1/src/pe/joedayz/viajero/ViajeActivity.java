@@ -70,5 +70,30 @@ public class ViajeActivity extends Activity {
 		return calendar.getTime();
 	}
 	
+
+		@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.viaje, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		
+		switch (item.getItemId()) {
+		case R.id.nuevo_gasto:
+			startActivity(new Intent(this, GastoActivity.class));
+			return true;
+		case R.id.eliminar:
+			//eliminar el viaje de la BD
+			Toast.makeText(this, "Eliminar viaje de la BD", 
+					Toast.LENGTH_SHORT).show();
+			return true;
+		default:
+			return super.onMenuItemSelected(featureId, item);
+		}
+		
+	}
 	
 }

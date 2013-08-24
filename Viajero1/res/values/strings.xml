@@ -43,5 +43,6 @@
 
     <string name="title_activity_gasto_list">GastoListActivity</string>
     <string name="salir">Salir</string>
+    <string name="eliminar_viaje">Eliminar Viaje</string>
 
 </resources>
