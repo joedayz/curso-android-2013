@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#015488" >
+
+        <!-- opciones superiores -->
+
+        <TextView
+            android:id="@+id/nuevo_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="80dp"
+            android:clickable="true"
+            android:drawableTop="@drawable/nuevo_gasto"
+            android:onClick="seleccionarOpcion"
+            android:text="@string/nuevo_gasto"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nuevo_viaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/nuevo_gasto"
+            android:layout_marginRight="50dp"
+            android:clickable="true"
+            android:drawableTop="@drawable/nuevo_viaje"
+            android:onClick="seleccionarOpcion"
+            android:text="@string/nuevo_viaje"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <!-- opciones inferiores -->
+
+        <TextView
+            android:id="@+id/mis_viajes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/nuevo_gasto"
+            android:layout_alignParentBottom="true"
+            
+            android:layout_marginBottom="120dp"
+            
+            android:clickable="true"
+            android:drawableTop="@drawable/mis_viajes"
+            android:onClick="seleccionarOpcion"
+            android:text="@string/mis_viajes"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+        
+        
+        
+        <TextView
+            android:id="@+id/configuraciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/nuevo_viaje"
+            android:layout_alignBottom="@+id/mis_viajes"
+            
+            
+            android:clickable="true"
+            android:drawableTop="@drawable/configuraciones"
+            android:onClick="seleccionarOpcion"
+            android:text="@string/configuraciones"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />        
+        
+
+        
+        
+    </RelativeLayout>
+
+</LinearLayout>

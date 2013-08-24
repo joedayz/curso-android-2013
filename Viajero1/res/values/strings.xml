@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Viajero</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="logo">logo</string>
+    <string name="usuario">Usuario</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="password">password</string>
+    <string name="error_autenticacion">Usuario invalido!</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="nuevo_gasto">Nuevo Gasto</string>
+    <string name="nuevo_viaje">Nuevo Viaje</string>
+    <string name="mis_viajes">Mis Viajes</string>
+    <string name="configuraciones">Configuraciones</string>
+    <string name="title_activity_viaje">ViajeActivity</string>
+    <string name="destino">Destino</string>
+    <string name="tipo_de_viaje">Tipo de Viaje</string>
+    <string name="placer">placer</string>
+    <string name="negocios">negocios</string>
+    <string name="fecha_de_llegada">Fecha de Llegada</string>
+    <string name="fecha_de_salida">Fecha de Salida</string>
+    <string name="seleccione">Seleccione</string>
+    <string name="presupuesto">presupuesto</string>
+    <string name="crear_nuevo_viaje">Crear Nuevo Viaje</string>
+    <string name="cantidad_de_personas">Cantidad de Personas</string>
+    <string name="title_activity_gasto">GastoActivity</string>
+    <string name="categoria">Categoria</string>
+    <string name="valor">Valor</string>
+    <string name="fecha">Fecha</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="local">Local</string>
+    <string name="gasto">Gasto</string>
+
+    <string-array name="categoria_gasto">
+        <item>Alimentacion</item>
+        <item>Combustible</item>
+        <item>Transporte</item>
+        <item>Hospedaje</item>
+        <item>Otros</item>
+    </string-array>
+
+</resources>

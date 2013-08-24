@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="0,1,2" >
+
+    <LinearLayout
+        android:background="#015488"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/nuevo_viaje"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView android:text="@string/destino" />
+
+    <EditText
+        android:id="@+id/destino"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView android:text="@string/tipo_de_viaje" />
+
+    <RadioGroup
+        android:id="@+id/tipoViaje"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/placer"
+            android:checked="true"
+            android:text="@string/placer" />
+
+        <RadioButton
+            android:id="@+id/negocios"
+            android:layout_marginLeft="30dp"
+            android:text="@string/negocios" />
+    </RadioGroup>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="@string/fecha_de_llegada" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="@string/fecha_de_salida" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/fechaLlegada"
+            android:onClick="seleccionarFecha"
+            android:text="@string/seleccione" />
+
+        <Button
+            android:id="@+id/fechaSalida"
+            android:onClick="seleccionarFecha"
+            android:text="@string/seleccione" />
+    </TableRow>
+
+    <TextView android:text="@string/presupuesto" />
+
+    <EditText
+        android:id="@+id/presupuesto"
+        android:inputType="numberDecimal" />
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/cantidad_de_personas" />
+
+        <EditText
+            android:id="@+id/cantidadpersonas"
+            android:inputType="number" />
+    </TableRow>
+
+    <Button
+        android:onClick="crearViaje"
+        android:text="@string/crear_nuevo_viaje" />
+
+</TableLayout>
