@@ -30,4 +30,20 @@ public class PrincipalActivity extends Activity {
 		
 	}
 
+		//menu
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.principal, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, 
+			MenuItem item) {
+		finish();
+		return true;
+	}
+	
+
 }
