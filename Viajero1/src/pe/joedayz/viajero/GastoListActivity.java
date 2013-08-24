@@ -23,7 +23,7 @@ public class GastoListActivity extends ListActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.lista_gasto);
+		
 		
 		String[] de = {"fecha", "descripcion", "valor", "categoria"};
 		int[] para = {R.id.fecha, R.id.descripcion, R.id.valor, R.id.categoria};
