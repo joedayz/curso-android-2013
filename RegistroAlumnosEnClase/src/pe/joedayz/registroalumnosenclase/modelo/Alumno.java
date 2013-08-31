@@ -10,7 +10,10 @@ public class Alumno {
 	private Double nota;
 	private String foto;
 	
-	
+	@Override
+	public String toString() {
+		return nombre;
+	}
 	
 	public Long getId() {
 		return id;
