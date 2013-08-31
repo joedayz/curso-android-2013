@@ -51,5 +51,22 @@ public class ListaAlumnosActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 	
+		
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		int itemSeleccionado = item.getItemId();
+		switch (itemSeleccionado) {
+		case R.id.nuevo:
+			Intent irParaFormulario = new Intent(this, FormularioActivity.class);
+			startActivity(irParaFormulario);
+			break;
+
+		default:
+			break;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
 
 }
