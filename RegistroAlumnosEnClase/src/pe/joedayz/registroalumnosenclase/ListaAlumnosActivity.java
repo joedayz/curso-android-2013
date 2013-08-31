@@ -1,7 +1,15 @@
 package pe.joedayz.registroalumnosenclase;
 
+import java.util.List;
+
+import pe.joedayz.registroalumnosenclase.dao.AlumnoDAO;
+import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -11,24 +19,18 @@ import android.widget.Toast;
 
 public class ListaAlumnosActivity extends Activity {
 
-	private ListView listaAlumnos;
+	private ListView lista;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.listade_alumnos);
 		
-		String[] alumnos = {"Hugo", "Paco", "Luis"};
+	
+		lista = (ListView) findViewById(R.id.lista);
 		
-		int layout =  android.R.layout.simple_list_item_1;
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				layout, alumnos);
 		
-		listaAlumnos = (ListView) findViewById(R.id.lista);
-		
-		listaAlumnos.setAdapter(adapter);
-		
-		listaAlumnos.setOnItemClickListener(new OnItemClickListener() {
+		lista.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, 
@@ -42,6 +44,23 @@ public class ListaAlumnosActivity extends Activity {
 		});
 	}
 
+	
+	@Override
+	protected void onResume() {
+		
+		AlumnoDAO dao = new AlumnoDAO(this);
+
+		List<Alumno> alumnos = dao.getLista();
+		dao.close();
+
+		int layout = android.R.layout.simple_list_item_1;
+		ArrayAdapter<Alumno> adapter = new ArrayAdapter<Alumno>(this, layout,
+				alumnos);
+
+		lista.setAdapter(adapter);
+	}
+	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -51,7 +70,6 @@ public class ListaAlumnosActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 	
-		
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
@@ -68,5 +86,5 @@ public class ListaAlumnosActivity extends Activity {
 		
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 }
