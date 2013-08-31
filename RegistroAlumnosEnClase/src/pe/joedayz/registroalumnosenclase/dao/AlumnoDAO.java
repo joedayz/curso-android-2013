@@ -1,7 +1,11 @@
 package pe.joedayz.registroalumnosenclase.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -44,6 +48,32 @@ public class AlumnoDAO extends SQLiteOpenHelper{
 
 		this.onCreate(db);
 		
+	}
+
+	public List<Alumno> getLista() {
+		// 0, 1, 2 ...
+		String[] columnas = { "id", "nombre", "site", "telefono", "direccion",
+				"foto", "nota" };
+		
+		Cursor cursor = getWritableDatabase().query("Alumnos", columnas, null,
+				null, null, null, null, null);
+		
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		
+		while (cursor.moveToNext()) {
+
+			Alumno alumno = new Alumno();
+			alumno.setId(cursor.getLong(0));
+			alumno.setNombre(cursor.getString(1));
+			alumno.setSite(cursor.getString(2));
+			alumno.setTelefono(cursor.getString(3));
+			alumno.setDireccion(cursor.getString(4));
+			alumno.setFoto(cursor.getString(5));
+			alumno.setNota(cursor.getDouble(6));
+			alumnos.add(alumno);
+		}
+		
+		return alumnos;
 	}
 
 }
