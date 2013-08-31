@@ -47,6 +47,7 @@ public class ListaAlumnosActivity extends Activity {
 	
 	@Override
 	protected void onResume() {
+		super.onResume();
 		
 		AlumnoDAO dao = new AlumnoDAO(this);
 
