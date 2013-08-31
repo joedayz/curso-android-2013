@@ -23,9 +23,9 @@ public class FormularioHelper {
 	public Alumno guardarAlumnoDeFormulario() {
 		Alumno alumno = new Alumno();
 		alumno.setNombre(editNombre.getText().toString());
-		alumno.setSite(editNombre.getText().toString());
-		alumno.setTelefono(editNombre.getText().toString());
-		alumno.setDireccion(editNombre.getText().toString());
+		alumno.setSite(editSite.getText().toString());
+		alumno.setTelefono(editTelefono.getText().toString());
+		alumno.setDireccion(editDireccion.getText().toString());
 		alumno.setNota(Double.valueOf(ratingNota.getRating()));
 		
 		return alumno;
