@@ -1,10 +1,9 @@
 package pe.joedayz.registroalumnosenclase;
 
+import pe.joedayz.registroalumnosenclase.dao.AlumnoDAO;
 import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.RatingBar;
 
 public class FormularioActivity extends Activity {
 
@@ -19,8 +18,10 @@ public class FormularioActivity extends Activity {
 		helper = new FormularioHelper(this);
 
 
-		helper.guardarAlumnoDeFormulario();
+		Alumno alumno = helper.guardarAlumnoDeFormulario();
 
+		AlumnoDAO dao = new AlumnoDAO(this);
+		dao.grabar(alumno);
 
 
 	}
