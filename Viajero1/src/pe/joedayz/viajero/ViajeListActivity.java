@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleAdapter.ViewBinder;
 
@@ -33,9 +32,9 @@ public class ViajeListActivity extends ListActivity implements
 
 		super.onCreate(savedInstanceState);
 
-		String[] de = { "imagen", "destino", "fecha", "total", "barraProgreso" };
-		int[] para = { R.id.tipoViaje, R.id.destino, R.id.fecha, R.id.valor ,
-				 R.id.barraProgresso};
+		String[] de = { "imagen", "destino", "fecha", "total" };
+		int[] para = { R.id.tipoViaje, R.id.destino, R.id.fecha, R.id.valor 
+				 };
 
 		SimpleAdapter adapter = new SimpleAdapter(this, listarViajes(),
 				R.layout.lista_viaje, de, para);
@@ -149,14 +148,7 @@ public class ViajeListActivity extends ListActivity implements
 
 	public boolean setViewValue(View view, Object data,
 	                            String textRepresentation) {
-	    if (view.getId() == R.id.barraProgresso) {
-	        Double valores[] = (Double[]) data;
-	        ProgressBar progressBar = (ProgressBar) view;
-	        progressBar.setMax(valores[0].intValue());
-	        progressBar.setSecondaryProgress(valores[1].intValue());
-	        progressBar.setProgress(valores[2].intValue());
-	        return true;
-	    }
+
 	    return false;
 	}
 	
