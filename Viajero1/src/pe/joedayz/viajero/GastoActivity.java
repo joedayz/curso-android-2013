@@ -42,6 +42,7 @@ public class GastoActivity extends Activity {
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	public void seleccionarFecha(View view){
 		showDialog(view.getId());
 	}

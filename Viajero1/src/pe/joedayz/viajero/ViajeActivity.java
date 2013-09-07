@@ -7,10 +7,15 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 public class ViajeActivity extends Activity {
 
@@ -42,24 +47,29 @@ public class ViajeActivity extends Activity {
 
 		switch (id) {
 		case R.id.fechaLlegada:
-			return new DatePickerDialog(this, fechaLlegadaListener, anno, mes, dia);
+			return new DatePickerDialog(this, fechaLlegadaListener,
+					anno, mes, dia);
 
 		case R.id.fechaSalida:
-			return new DatePickerDialog(this, fechaSalidaListener, anno, mes, dia);
+			return new DatePickerDialog(this, fechaSalidaListener, 
+					anno, mes, dia);
 		}
 		return null;
 	}
 
 	private OnDateSetListener fechaLlegadaListener = new OnDateSetListener() {
-		public void onDateSet(DatePicker view, int anoSelecionado, int mesSelecionado, int diaSelecionado) {
-			fechaLlegada = crearDatos(anoSelecionado, mesSelecionado, diaSelecionado);
+		public void onDateSet(DatePicker view, int anoSelecionado, 
+				int mesSelecionado, int diaSelecionado) {
+			fechaLlegada = crearDatos(anoSelecionado, mesSelecionado, 
+					diaSelecionado);
 			fechaLlegadaButton.setText(dia + "/" + (mes + 1) + "/" + anno);
 		}
 	};
 
 	private OnDateSetListener fechaSalidaListener = new OnDateSetListener() {
 		public void onDateSet(DatePicker view, int anoSelecionado, int mesSelecionado, int diaSelecionado) {
-			fechaSalida = crearDatos(anoSelecionado, mesSelecionado, diaSelecionado);
+			fechaSalida = crearDatos(anoSelecionado, mesSelecionado,
+					diaSelecionado);
 			fechaSalidaButton.setText(dia + "/" + (mes + 1) + "/" + anno);
 		}
 	};
@@ -69,9 +79,8 @@ public class ViajeActivity extends Activity {
 		calendar.set(anoSelecionado, mesSelecionado, diaSelecionado);
 		return calendar.getTime();
 	}
-	
 
-		@Override
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.viaje, menu);
@@ -95,5 +104,8 @@ public class ViajeActivity extends Activity {
 		}
 		
 	}
+	
+	
+	
 	
 }

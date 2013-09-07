@@ -44,5 +44,19 @@
     <string name="title_activity_gasto_list">GastoListActivity</string>
     <string name="salir">Salir</string>
     <string name="eliminar_viaje">Eliminar Viaje</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="gastos_realizados">Gastos Realizados</string>
+    <string name="opciones">Opciones</string>
+    <string name="confirmacion_eliminacion_viaje">¿Desea realmente eliminar el viaje?</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="preferencias">Preferências</string>
+    <string name="modo_viaje">Modo Viaje</string>
+    <string name="modo_viaje_resumen">Determina un viaje activo en base a la fecha actual</string>
+    <string name="valor_limite">Alerta de gastos</string>
+    <string name="valor_limite_resumen">Notifica cuando los gastos sobrepasan el limite establecido</string>
+    <string name="informe_valor_limite">Informe de valor limite (en %)</string>
+    <string name="mantener_conectado">Mantener Conectado</string>
 
 </resources>

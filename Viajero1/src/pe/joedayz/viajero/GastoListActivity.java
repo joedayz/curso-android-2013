@@ -7,8 +7,13 @@ import java.util.Map;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleAdapter.ViewBinder;
@@ -19,11 +24,12 @@ public class GastoListActivity extends ListActivity
 			implements OnItemClickListener{
 
 	private List<Map<String, Object>> gastos;
+	private String fechaAnterior = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		//no va el layout
 		
 		String[] de = {"fecha", "descripcion", "valor", "categoria"};
 		int[] para = {R.id.fecha, R.id.descripcion, R.id.valor, R.id.categoria};
@@ -34,6 +40,9 @@ public class GastoListActivity extends ListActivity
 		
 		setListAdapter(adapter);
 		getListView().setOnItemClickListener(this);
+		
+		//registramos el nuevo menu contextual
+		registerForContextMenu(getListView());
 	}
 
 	private List<Map<String, Object>> listarGastos() {
@@ -79,11 +88,11 @@ public class GastoListActivity extends ListActivity
 		private String fechaAnterior = "";
 		
 		@Override
-		public boolean setViewValue(View view, Object fecha,
+		public boolean setViewValue(View view, Object data,
 				String textRepresentation) {
 			
 			if(view.getId() == R.id.fecha){
-				if(!(fechaAnterior.equals(fecha))){
+				if(!(fechaAnterior.equals(data))){
 					TextView textView = (TextView) view;
 					textView.setText(textRepresentation);
 					fechaAnterior = textRepresentation;
@@ -94,7 +103,7 @@ public class GastoListActivity extends ListActivity
 			}
 			
 			if(view.getId() == R.id.categoria ){
-				Integer id = (Integer) fecha;
+				Integer id = (Integer) data;
 				view.setBackgroundColor(getResources().getColor(id));
 				return true;
 			}
@@ -104,4 +113,29 @@ public class GastoListActivity extends ListActivity
 		
 	}
 
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.gasto_menu, menu);
+	}
+
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+
+		if (item.getItemId() == R.id.remover) {
+			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+					.getMenuInfo();
+			gastos.remove(info.position);
+			getListView().invalidateViews();
+			fechaAnterior = ""; 
+			// remover do banco de dados
+			return true;
+		}
+		return super.onContextItemSelected(item);
+	}
+	
+	
+	
 }
