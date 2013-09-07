@@ -31,7 +31,7 @@ public class ViajeListActivity extends ListActivity implements
 	private int viajeSeleccionado;
 	private AlertDialog dialogConfirmacion;
 	private boolean modoSeleccionarViaje;
-	
+
 	private DatabaseHelper helper;
 	private SimpleDateFormat dateFormat;
 	private Double valorLimite;
@@ -43,14 +43,14 @@ public class ViajeListActivity extends ListActivity implements
 
 		helper = new DatabaseHelper(this);
 		dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		
-		SharedPreferences preferencias =
-				PreferenceManager.getDefaultSharedPreferences(this);
-		
+
+		SharedPreferences preferencias = PreferenceManager
+				.getDefaultSharedPreferences(this);
+
 		String valor = preferencias.getString("valor_limite", "-1");
 		valorLimite = Double.valueOf(valor);
-		
-		//código adicional
+
+		// código adicional
 		getListView().setOnItemClickListener(this);
 		alertDialog = crearAlertDialog();
 		dialogConfirmacion = crearDialogConfirmacion();
@@ -62,8 +62,7 @@ public class ViajeListActivity extends ListActivity implements
 	}
 
 	private List<Map<String, Object>> listarViajes() {
-		
-		
+
 		SQLiteDatabase db = helper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT _ID, TIPO_VIAJE, DESTINO, "
 				+ "FECHA_LLEGADA, FECHA_SALIDA, PRESUPUESTO FROM VIAJE", null);
@@ -106,8 +105,9 @@ public class ViajeListActivity extends ListActivity implements
 			item.put("total", "Gasto total S/. " + totalGasto);
 
 			double alerta = presupuesto * valorLimite / 100;
-			//Double[] valores = new Double[] { presupuesto, alerta, totalGasto };
-			//item.put("barraProgresso", valores);
+			// Double[] valores = new Double[] { presupuesto, alerta, totalGasto
+			// };
+			// item.put("barraProgresso", valores);
 			viajes.add(item);
 
 			cursor.moveToNext();
@@ -126,20 +126,21 @@ public class ViajeListActivity extends ListActivity implements
 		double total = cursor.getDouble(0);
 		cursor.close();
 		return total;
-	}	
-	
+	}
+
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		if(modoSeleccionarViaje){
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		if (modoSeleccionarViaje) {
 			String destino = (String) viajes.get(position).get("destino");
 			int idViagem = 1;
 
 			Intent data = new Intent();
-			data.putExtra(PrincipalActivity.VIAJE_ID, idViagem);
-			data.putExtra(PrincipalActivity.VIAJE_DESTINO, destino);
-			setResult(Activity.RESULT_OK, data );
+			data.putExtra(Constantes.VIAJE_ID, idViagem);
+			data.putExtra(Constantes.VIAJE_DESTINO, destino);
+			setResult(Activity.RESULT_OK, data);
 			finish();
-		}else{
+		} else {
 			viajeSeleccionado = position;
 			alertDialog.show();
 		}
@@ -147,31 +148,44 @@ public class ViajeListActivity extends ListActivity implements
 
 	@Override
 	public void onClick(DialogInterface dialog, int item) {
+
+		Intent intent;
+		String id = (String) viajes.get(viajeSeleccionado).get("id");
 		switch (item) {
-		case 0:
-			startActivity(new Intent(this, ViajeActivity.class));
+		case 0: // editar viaje
+			intent = new Intent(this, ViajeActivity.class);
+			intent.putExtra(Constantes.VIAJE_ID, id);
+			startActivity(intent);
 			break;
 		case 1:
-			Intent intent = new Intent(this, GastoActivity.class);
-			intent.putExtra(PrincipalActivity.VIAJE_ID, 1);
-			intent.putExtra(PrincipalActivity.VIAJE_DESTINO, viajes.get(viajeSeleccionado).
-					get("destino").toString());
+			intent = new Intent(this, GastoActivity.class);
+			intent.putExtra(Constantes.VIAJE_ID, 1);
+			intent.putExtra(Constantes.VIAJE_DESTINO,
+					viajes.get(viajeSeleccionado).get("destino").toString());
 			startActivity(intent);
 			break;
 		case 2:
 			startActivity(new Intent(this, GastoListActivity.class));
 			break;
 		case 3:
-	        dialogConfirmacion.show();
-	        break;
-	    case DialogInterface.BUTTON_POSITIVE:
-	        viajes.remove(viajeSeleccionado);
-	        getListView().invalidateViews();
-	        break;
-	    case DialogInterface.BUTTON_NEGATIVE:
-	        dialogConfirmacion.dismiss();
-	        break;
+			dialogConfirmacion.show();
+			break;
+		case DialogInterface.BUTTON_POSITIVE:
+			viajes.remove(viajeSeleccionado);
+			eliminarViaje(id);
+			getListView().invalidateViews();
+			break;
+		case DialogInterface.BUTTON_NEGATIVE:
+			dialogConfirmacion.dismiss();
+			break;
+		}
 	}
+	
+	private void eliminarViaje(String id) {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		String where[] = new String[] { id };
+		db.delete("GASTO", "VIAJE_ID = ?", where);
+		db.delete("VIAJE", "_ID = ?", where);
 	}
 
 	private AlertDialog crearAlertDialog() {
@@ -193,14 +207,14 @@ public class ViajeListActivity extends ListActivity implements
 		builder.setMessage(R.string.confirmacion_eliminacion_viaje);
 		builder.setPositiveButton(getString(R.string.si), this);
 		builder.setNegativeButton(getString(R.string.no), this);
-		
+
 		return builder.create();
 	}
 
 	public boolean setViewValue(View view, Object data,
-	                            String textRepresentation) {
+			String textRepresentation) {
 
-	    return false;
+		return false;
 	}
-	
+
 }

@@ -1,5 +1,6 @@
 package pe.joedayz.viajero;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +31,7 @@ public class ViajeActivity extends Activity {
 	private EditText destino, cantidadPersonas, presupuesto;
 	private RadioGroup radioGroup;
 	private DatabaseHelper helper;
+	private String id;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,14 @@ public class ViajeActivity extends Activity {
 		
 		//preparacion de la BD
 		helper = new DatabaseHelper(this);
+		
+		id = getIntent().getStringExtra(Constantes.VIAJE_ID);
+		
+		if(id != null){
+			prepararEdicion(); 
+		}
 	}
+
 
 	public void seleccionarFecha(View view) {
 		showDialog(view.getId());
@@ -122,6 +132,35 @@ public class ViajeActivity extends Activity {
 	}
 	
 	//database methods
+	
+	private void prepararEdicion() {
+		SQLiteDatabase db = helper.getReadableDatabase();
+
+		Cursor cursor =
+				db.rawQuery("SELECT TIPO_VIAJE, DESTINO, FECHA_LLEGADA, " +
+				"FECHA_SALIDA, CANTIDAD_PERSONAS, PRESUPUESTO " +
+				"FROM VIAJE WHERE _ID = ?", new String[]{id});
+		cursor.moveToFirst();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+		if(cursor.getInt(0) == Constantes.VIAJE_PLACER){
+			radioGroup.check(R.id.placer);
+		}else{
+			radioGroup.check(R.id.negocios);
+		}
+
+		destino.setText(cursor.getString(1));
+		fechaLlegada = new Date(cursor.getLong(2));
+		fechaSalida = new Date(cursor.getLong(3));
+		fechaLlegadaButton.setText(dateFormat.format(fechaLlegada));
+		fechaSalidaButton.setText(dateFormat.format(fechaSalida));
+		cantidadPersonas.setText(cursor.getString(4));
+		presupuesto.setText(cursor.getString(5));
+		cursor.close();
+	}
+	
+	
 	public void guardarViaje(View view){
 		SQLiteDatabase db = helper.getWritableDatabase();
 		
@@ -139,15 +178,18 @@ public class ViajeActivity extends Activity {
 		}else{
 			values.put("TIPO_VIAJE", Constantes.VIAJE_NEGOCIOS);
 		}
+		long resultado;
 		
-		long resultado = db.insert("VIAJE", null, values);
+		if(id == null){
+			resultado = db.insert("VIAJE", null, values);
+		}else{
+			resultado = db.update("VIAJE", values, "_ID = ?", new String[]{ id });
+		}
 		
-		if(resultado !=-1){
-			Toast.makeText(this, getString(R.string.registro_guardar), 
-					Toast.LENGTH_SHORT).show();
-		} else{
-			Toast.makeText(this, getString(R.string.error_guardar), 
-					Toast.LENGTH_SHORT).show();			
+		if(resultado != -1 ){
+			Toast.makeText(this, getString(R.string.registro_guardar), Toast.LENGTH_SHORT).show();
+		}else{
+			Toast.makeText(this, getString(R.string.error_guardar), Toast.LENGTH_SHORT).show();
 		}
 		
 	}

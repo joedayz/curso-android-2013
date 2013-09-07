@@ -10,11 +10,7 @@ import android.view.View;
 
 public class PrincipalActivity extends Activity {
 
-	public static final String MODO_VIAGEM = "modo_viaje";
-	public static final String VIAJE_ID = "viaje_id";
-	public static final String VIAJE_DESTINO = "viaje_destino";
-	public static final String MODO_SELECCIONAR_VIAJE = "modo_seleccionar_viaje";
-	
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
