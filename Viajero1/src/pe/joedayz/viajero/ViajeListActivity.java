@@ -16,10 +16,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SimpleAdapter.ViewBinder;
 
@@ -59,8 +61,36 @@ public class ViajeListActivity extends ListActivity implements
 			modoSeleccionarViaje = getIntent().getExtras().getBoolean(
 					Constantes.MODO_SELECCIONAR_VIAJE);
 		}
+		
+		new Task().execute((Void) null);
 	}
 
+	
+	private class Task extends AsyncTask<Void, Void, List<Map<String, Object>>> {
+
+		@Override
+		protected List<Map<String, Object>> doInBackground(Void... params) {
+			return listarViajes();
+		}
+		
+		@Override
+		protected void onPostExecute(List<Map<String, Object>> result) {
+			String[] de = { "imagen", "destino", "fecha", "total"};
+
+			int[] para = { R.id.tipoViaje, R.id.destino, R.id.fecha,
+					R.id.valor};
+
+			SimpleAdapter adapter = new SimpleAdapter(ViajeListActivity.this,
+					result, R.layout.lista_viaje, de, para);
+
+			adapter.setViewBinder(ViajeListActivity.this);
+
+			setListAdapter(adapter);
+		}
+		
+	}
+	
+	
 	private List<Map<String, Object>> listarViajes() {
 
 		SQLiteDatabase db = helper.getReadableDatabase();

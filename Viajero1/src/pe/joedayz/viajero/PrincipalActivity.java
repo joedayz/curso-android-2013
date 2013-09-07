@@ -27,10 +27,11 @@ public class PrincipalActivity extends Activity {
 		case R.id.nuevo_gasto:
 			startActivity(new Intent(this, GastoActivity.class));
 			break;
+		case R.id.mis_viajes:
+			startActivity(new Intent(this, ViajeListActivity.class));
+			break;
 		case R.id.configuraciones:
 			startActivity(new Intent(this, ConfiguracionesActivity.class));
-			break;
-		default:
 			break;
 		}
 		

@@ -161,7 +161,7 @@ public class ViajeActivity extends Activity {
 	}
 	
 	
-	public void guardarViaje(View view){
+	public void crearViaje(View view){
 		SQLiteDatabase db = helper.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
