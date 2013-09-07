@@ -139,7 +139,22 @@ public class ViajeActivity extends Activity {
 		}else{
 			values.put("TIPO_VIAJE", Constantes.VIAJE_NEGOCIOS);
 		}
+		
+		long resultado = db.insert("VIAJE", null, values);
+		
+		if(resultado !=-1){
+			Toast.makeText(this, getString(R.string.registro_guardar), 
+					Toast.LENGTH_SHORT).show();
+		} else{
+			Toast.makeText(this, getString(R.string.error_guardar), 
+					Toast.LENGTH_SHORT).show();			
+		}
+		
 	}
 	
-	
+	@Override
+	protected void onDestroy() {
+		helper.close();
+		super.onDestroy();
+	}
 }
