@@ -7,7 +7,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class ViajeActivity extends Activity {
@@ -22,6 +26,9 @@ public class ViajeActivity extends Activity {
 	private Date fechaLlegada, fechaSalida;
 	private int anno, mes, dia;
 	private Button fechaLlegadaButton, fechaSalidaButton;
+	private EditText destino, cantidadPersonas, presupuesto;
+	private RadioGroup radioGroup;
+	private DatabaseHelper helper;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,15 @@ public class ViajeActivity extends Activity {
 		
 		fechaLlegadaButton = (Button) findViewById(R.id.fechaLlegada);
 		fechaSalidaButton = (Button) findViewById(R.id.fechaSalida);
+		
+		//recuperando datos
+		destino = (EditText) findViewById(R.id.destino);
+		cantidadPersonas = (EditText) findViewById(R.id.cantidadpersonas);
+		presupuesto = (EditText) findViewById(R.id.presupuesto);
+		radioGroup = (RadioGroup) findViewById(R.id.tipoViaje);
+		
+		//preparacion de la BD
+		helper = new DatabaseHelper(this);
 	}
 
 	public void seleccionarFecha(View view) {
@@ -105,7 +121,25 @@ public class ViajeActivity extends Activity {
 		
 	}
 	
-	
+	//database methods
+	public void guardarViaje(View view){
+		SQLiteDatabase db = helper.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put("DESTINO", destino.getText().toString());
+		values.put("FECHA_LLEGADA", fechaLlegada.getTime());
+		values.put("FECHA_SALIDA", fechaSalida.getTime());
+		values.put("PRESUPUESTO", presupuesto.getText().toString());
+		values.put("CANTIDAD_PERSONAS", cantidadPersonas.getText().toString());
+		
+		int tipo = radioGroup.getCheckedRadioButtonId();
+		
+		if(tipo == R.id.placer){
+			values.put("TIPO_VIAJE", Constantes.VIAJE_PLACER);
+		}else{
+			values.put("TIPO_VIAJE", Constantes.VIAJE_NEGOCIOS);
+		}
+	}
 	
 	
 }
