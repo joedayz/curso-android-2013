@@ -23,9 +23,7 @@ public class PrincipalActivity extends Activity {
 	}
 
 	public void seleccionarOpcion(View v){
-//		TextView textView = (TextView) v;
-//		String opcion = "Opcion " + textView.getText().toString();
-//		Toast.makeText(this, opcion, Toast.LENGTH_LONG).show();
+
 		switch (v.getId()) {
 		case R.id.nuevo_viaje:
 			startActivity(new Intent(this, ViajeActivity.class));

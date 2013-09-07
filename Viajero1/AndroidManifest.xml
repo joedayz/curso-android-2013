@@ -16,6 +16,11 @@
         <activity
             android:name="pe.joedayz.viajero.ViajeroActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="pe.joedayz.viajero.PrincipalActivity"
@@ -29,12 +34,12 @@
             android:name="pe.joedayz.viajero.GastoActivity"
             android:label="@string/title_activity_gasto" >
         </activity>
+        
+        <activity
+            android:name="pe.joedayz.viajero.ConfiguracionesActivity"
+            android:label="@string/title_activity_configuraciones" >
+        </activity>        
         <activity android:name="pe.joedayz.viajero.ViajeListActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="pe.joedayz.viajero.GastoListActivity"

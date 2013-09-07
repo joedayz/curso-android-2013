@@ -3,7 +3,7 @@
 
     <PreferenceCategory android:title="@string/preferencias" >
         <CheckBoxPreference
-            android:key="modo_viagem"
+            android:key="modo_viaje"
             android:summary="@string/modo_viaje_resumen"
             android:title="@string/modo_viaje" />
 

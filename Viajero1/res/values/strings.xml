@@ -58,5 +58,6 @@
     <string name="valor_limite_resumen">Notifica cuando los gastos sobrepasan el limite establecido</string>
     <string name="informe_valor_limite">Informe de valor limite (en %)</string>
     <string name="mantener_conectado">Mantener Conectado</string>
+    <string name="title_activity_configuraciones">ConfiguracionesActivity</string>
 
 </resources>
