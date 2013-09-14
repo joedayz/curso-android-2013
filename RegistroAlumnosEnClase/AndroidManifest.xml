@@ -22,11 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="pe.joedayz.registroalumnosenclase.FormularioActivity"
-             />
-        
+            android:label="@string/title_activity_formulario" >
+        </activity>
     </application>
 
 </manifest>
