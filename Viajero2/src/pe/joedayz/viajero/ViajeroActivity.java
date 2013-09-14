@@ -37,7 +37,7 @@ public class ViajeroActivity extends Activity {
     	String usuarioInformado = usuario.getText().toString();
     	String senhaInformada = password.getText().toString();
     	
-    	if("leitor".equals(usuarioInformado)  && "123".equals(senhaInformada)){
+    	if("joe".equals(usuarioInformado)  && "123".equals(senhaInformada)){
     		SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
     		Editor editor = preferencias.edit();
     		editor.putBoolean(MANTENER_CONECTADO, mantenerConectado.isChecked());

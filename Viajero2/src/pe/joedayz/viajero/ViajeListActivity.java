@@ -245,7 +245,7 @@ public class ViajeListActivity extends ListActivity implements
 			long id) {
 		if (modoSeleccionarViaje) {
 			String destino = (String) viajes.get(position).get("destino");
-			Integer idViagem = (Integer) viajes.get(position).get("id");
+			String idViagem = (String) viajes.get(position).get("id");
 
 			Intent data = new Intent();
 			data.putExtra(Constantes.VIAJE_ID, idViagem);

@@ -44,7 +44,11 @@ public class ViajeActivity extends Activity {
 		dia = calendar.get(Calendar.DAY_OF_MONTH);
 		
 		fechaLlegadaButton = (Button) findViewById(R.id.fechaLlegada);
+		
+		
 		fechaSalidaButton = (Button) findViewById(R.id.fechaSalida);
+		
+		
 		
 		destino = (EditText) findViewById(R.id.destino);
 		cantidadPersonas = (EditText) findViewById(R.id.cantidadpersonas);
@@ -106,16 +110,23 @@ public class ViajeActivity extends Activity {
 	}
 	
 	private OnDateSetListener fechaLlegadaListener = new OnDateSetListener() {
-		public void onDateSet(DatePicker view, int anoSelecionado, int mesSelecionado, int diaSelecionado) {
-			fechaLlegada = crearFecha(anoSelecionado, mesSelecionado, diaSelecionado);
+		public void onDateSet(DatePicker view, int anoSeleccionado, int mesSeleccionado, int diaSeleccionado) {
+			ano = anoSeleccionado;
+			mes = mesSeleccionado;
+			dia = diaSeleccionado;
+			fechaLlegada = crearFecha(anoSeleccionado, mesSeleccionado, diaSeleccionado);
 			fechaLlegadaButton.setText(dia + "/" + (mes + 1) + "/" + ano);
 		}
 	};
 
 	private OnDateSetListener fechaSalidaListener = new OnDateSetListener() {
-		public void onDateSet(DatePicker view, int anoSelecionado, int mesSelecionado, int diaSelecionado) {
-			fechaSalida = crearFecha(anoSelecionado, mesSelecionado, diaSelecionado);
+		public void onDateSet(DatePicker view, int anoSeleccionado, int mesSeleccionado, int diaSeleccionado) {
+			ano = anoSeleccionado;
+			mes = mesSeleccionado;
+			dia = diaSeleccionado;
 			fechaSalidaButton.setText(dia + "/" + (mes + 1) + "/" + ano);
+			fechaSalida = crearFecha(anoSeleccionado, mesSeleccionado, diaSeleccionado);
+			
 		}
 	};
 
