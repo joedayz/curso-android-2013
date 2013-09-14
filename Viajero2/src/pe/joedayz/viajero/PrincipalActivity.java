@@ -19,7 +19,7 @@ public class PrincipalActivity extends Activity {
 		setContentView(R.layout.principal);
 	}
 
-	public void selecionarOpcao(View view) {
+	public void seleccionarOpcion(View view) {
 		switch (view.getId()) {
 		case R.id.nuevo_viaje:
 			startActivity(new Intent(this, ViajeActivity.class));

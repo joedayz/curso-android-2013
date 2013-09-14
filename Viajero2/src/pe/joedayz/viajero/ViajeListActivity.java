@@ -60,7 +60,7 @@ public class ViajeListActivity extends ListActivity implements
 					Constantes.MODO_SELECCIONAR_VIAJE);
 		}
 
-		// TODO mostrar textview informando que os registros est��o sendo
+		// TODO mostrar textview informando que os registros est������o sendo
 		// carregados
 
 		new Task().execute((Void) null);
@@ -77,7 +77,7 @@ public class ViajeListActivity extends ListActivity implements
 
 		@Override
 		protected void onPostExecute(List<Map<String, Object>> result) {
-			String[] de = { "imagem", "destino", "data", "total"};
+			String[] de = { "imagen", "destino", "fecha", "total"};
 
 			int[] para = { R.id.tipoViaje, R.id.destino, R.id.fecha,
 					R.id.valor};

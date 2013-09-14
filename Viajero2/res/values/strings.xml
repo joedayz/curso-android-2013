@@ -62,5 +62,6 @@
 
     <string name="registro_guardar">Registro grabado con exito!</string>
     <string name="error_guardar">Error al guardar!</string>
+    <string name="title_activity_configuracion">ConfiguracionesActivity</string>
 
 </resources>

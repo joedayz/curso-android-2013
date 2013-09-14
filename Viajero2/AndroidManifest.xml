@@ -40,9 +40,12 @@
             android:name="pe.joedayz.viajero.GastoListActivity"
             android:label="@string/title_activity_gasto_list" >
         </activity>
-        
+        <activity
+            android:name="pe.joedayz.viajero.ConfiguracionesActivity"
+            android:label="@string/title_activity_configuracion" >
+        </activity>        
        <provider
-            android:name=".provider.BoaViagemProvider"
+            android:name=".provider.ViajeroProvider"
             android:authorities="pe.joedayz.viajero.provider" >
             <path-permission
                 android:path="viagem"
