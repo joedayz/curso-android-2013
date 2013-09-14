@@ -7,12 +7,15 @@ import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ public class ListaAlumnosActivity extends Activity {
 	
 		lista = (ListView) findViewById(R.id.lista);
 		
+		registerForContextMenu(lista);
 		
 		lista.setOnItemClickListener(new OnItemClickListener() {
 
@@ -37,11 +41,28 @@ public class ListaAlumnosActivity extends Activity {
 					int position,
 					long id) {
 				Toast.makeText(ListaAlumnosActivity.this,
-						"Mi texto de aviso", Toast.LENGTH_SHORT).show();
+						"Clic en la posicion " + position, Toast.LENGTH_SHORT).show();
 				
 			}
 			
 		});
+		lista.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?>
+					adapter, View view,
+					int posicion, long id) {
+				Toast.makeText(ListaAlumnosActivity.this,
+						"Clic largo en " + 
+				adapter.getItemIdAtPosition(posicion), 
+				Toast.LENGTH_SHORT).show();
+				return false;
+			}
+		
+
+	
+			
+		});		
 	}
 
 	
@@ -87,5 +108,23 @@ public class ListaAlumnosActivity extends Activity {
 		
 		return super.onOptionsItemSelected(item);
 	}
+
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, 
+			View v,
+			ContextMenuInfo menuInfo) {
+		
+		menu.add("Matricular");
+		menu.add("Enviar SMS");
+		menu.add("Navegar en el site");
+		menu.add("Eliminar");
+		menu.add("Ver en el mapa");
+		menu.add("Enviar en el email");
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
+	
+	
 	
 }
