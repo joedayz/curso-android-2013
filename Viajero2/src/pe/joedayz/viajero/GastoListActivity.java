@@ -64,22 +64,22 @@ public class GastoListActivity extends ListActivity implements
 		gastos.add(item);
 
 		item = new HashMap<String, Object>();
-		item.put("data", "03/02/2012");
-		item.put("descricao", "Wifi");
+		item.put("fecha", "03/02/2012");
+		item.put("descripcion", "Wifi");
 		item.put("valor", "S/. 7,00");
 		item.put("categoria", R.color.categoria_otros);
 		gastos.add(item);
 
 		item = new HashMap<String, Object>();
-		item.put("data", "02/02/2012");
-		item.put("descricao", "Taxi Aeroporto - Hotel");
+		item.put("fecha", "02/02/2012");
+		item.put("descripcion", "Taxi Aeroporto - Hotel");
 		item.put("valor", "S/. 34,00");
 		item.put("categoria", R.color.categoria_transporte);
 		gastos.add(item);
 
 		item = new HashMap<String, Object>();
-		item.put("data", "02/02/2012");
-		item.put("descricao", "Sanguche");
+		item.put("fecha", "01/02/2012");
+		item.put("descripcion", "Sanguche");
 		item.put("valor", "S/. 19,90");
 		item.put("categoria", R.color.categoria_alimentacion);
 		gastos.add(item);

@@ -62,7 +62,7 @@ public class GastoActivity extends Activity {
 		helper = new DatabaseHelper(this);
 	}
 
-	public void selecionarData(View view) {
+	public void seleccionarFecha(View view) {
 		showDialog(view.getId());
 	}
 

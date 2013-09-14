@@ -88,7 +88,7 @@ public class ViajeActivity extends Activity {
 		cursor.close();
 	}
 
-	public void selecionarData(View view) {
+	public void seleccionarFecha(View view) {
 		showDialog(view.getId());
 	}
 
@@ -154,7 +154,7 @@ public class ViajeActivity extends Activity {
 		db.delete("VIAJE", "_ID = ?", where);
 	}
 	
-	public void guardarViaje(View view){
+	public void crearViaje(View view){
 		SQLiteDatabase db = helper.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
