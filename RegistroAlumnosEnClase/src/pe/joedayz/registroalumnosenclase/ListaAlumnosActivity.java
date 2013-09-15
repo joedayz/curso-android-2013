@@ -75,6 +75,11 @@ public class ListaAlumnosActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		
+		cargarLista();
+	}
+
+
+	private void cargarLista() {
 		AlumnoDAO dao = new AlumnoDAO(this);
 
 		List<Alumno> alumnos = dao.getLista();
@@ -131,6 +136,8 @@ public class ListaAlumnosActivity extends Activity {
 				AlumnoDAO dao = new AlumnoDAO(ListaAlumnosActivity.this);
 				dao.eliminar(alumno);
 				dao.close();
+				
+				cargarLista();
 				return false;
 			}
 		});

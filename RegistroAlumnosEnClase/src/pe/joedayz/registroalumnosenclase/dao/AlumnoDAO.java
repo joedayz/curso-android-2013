@@ -14,7 +14,7 @@ import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 public class AlumnoDAO extends SQLiteOpenHelper{
 
 	private static final String DATABASE = "RegistroAlumnosEnClase";
-	private static final int VERSION = 1;
+	private static final int VERSION = 2;
 
 	public AlumnoDAO(Context context) {
 		super(context, DATABASE, null, VERSION);
@@ -33,7 +33,7 @@ public class AlumnoDAO extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String ddl = "CREATE TABLE Alumnos (" + "id PRIMARY KEY,"
+		String ddl = "CREATE TABLE Alumnos (" + "id INTEGER PRIMARY KEY,"
 				+ "nombre TEXT UNIQUE NOT NULL," + "telefono TEXT,"
 				+ "direccion TEXT," + "site TEXT," + "foto TEXT,"
 				+ "nota REAL);";
