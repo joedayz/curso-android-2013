@@ -12,6 +12,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -23,7 +24,8 @@ import android.widget.Toast;
 public class ListaAlumnosActivity extends Activity {
 
 	private ListView lista;
-
+	private Alumno alumno;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,13 +50,16 @@ public class ListaAlumnosActivity extends Activity {
 		});
 		lista.setOnItemLongClickListener(new OnItemLongClickListener() {
 
+			
+
 			@Override
 			public boolean onItemLongClick(AdapterView<?>
 					adapter, View view,
 					int posicion, long id) {
+				alumno = (Alumno) adapter.getItemAtPosition(posicion);
 				Toast.makeText(ListaAlumnosActivity.this,
 						"Clic largo en " + 
-				adapter.getItemIdAtPosition(posicion), 
+				alumno, 
 				Toast.LENGTH_SHORT).show();
 				return false;
 			}
@@ -118,7 +123,17 @@ public class ListaAlumnosActivity extends Activity {
 		menu.add("Matricular");
 		menu.add("Enviar SMS");
 		menu.add("Navegar en el site");
-		menu.add("Eliminar");
+		MenuItem eliminar = menu.add("Eliminar");
+		eliminar.setOnMenuItemClickListener( new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				AlumnoDAO dao = new AlumnoDAO(ListaAlumnosActivity.this);
+				dao.eliminar(alumno);
+				dao.close();
+				return false;
+			}
+		});
 		menu.add("Ver en el mapa");
 		menu.add("Enviar en el email");
 		super.onCreateContextMenu(menu, v, menuInfo);
