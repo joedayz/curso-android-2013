@@ -6,6 +6,7 @@ import pe.joedayz.registroalumnosenclase.dao.AlumnoDAO;
 import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -131,9 +132,39 @@ public class ListaAlumnosActivity extends Activity {
 			View v,
 			ContextMenuInfo menuInfo) {
 		
-		menu.add("Matricular");
+		
+		MenuItem llamar = menu.add("Llamar");
+		llamar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				
+				Intent irALlamar = 
+						new Intent(Intent.ACTION_CALL);
+				Uri llamarA = Uri.parse("tel:" + alumno.getTelefono());
+				irALlamar.setData(llamarA);
+				
+				startActivity(irALlamar);
+				return false;
+			}
+		});
 		menu.add("Enviar SMS");
-		menu.add("Navegar en el site");
+		MenuItem site = menu.add("Navegar a");
+		site.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent irASite =
+						new Intent(Intent.ACTION_VIEW);
+				Uri site = Uri.parse("http://"+ alumno.getSite());
+				irASite.setData(site);
+				
+				startActivity(irASite);
+				return false;
+			}
+		});
+		
+		
 		MenuItem eliminar = menu.add("Eliminar");
 		eliminar.setOnMenuItemClickListener( new OnMenuItemClickListener() {
 			

@@ -1,19 +1,25 @@
 package pe.joedayz.registroalumnosenclase;
 
+import java.io.File;
+
 import pe.joedayz.registroalumnosenclase.dao.AlumnoDAO;
 import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class FormularioActivity extends Activity {
 
 	FormularioHelper helper;
-
+	private String caminoArchivo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,37 @@ public class FormularioActivity extends Activity {
 			}
 		});
 
+		
+		ImageView foto = helper.getFoto();
+		foto.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent irACamara = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				
+				 caminoArchivo = Environment.getExternalStorageDirectory().toString() 
+						   + "/" + System.currentTimeMillis() + ".png";
+				File file = new File(caminoArchivo);
+				Uri localFile =  Uri.fromFile(file);
+				
+				irACamara.putExtra(MediaStore.EXTRA_OUTPUT, localFile);
+				
+				startActivityForResult(irACamara, 123);
+			}
+		});
 
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == 123){
+			if(resultCode == Activity.RESULT_OK){
+				helper.cargarImagen(caminoArchivo);
+			}else{
+				caminoArchivo = null;
+			}
+		}
 	}
 
 }
