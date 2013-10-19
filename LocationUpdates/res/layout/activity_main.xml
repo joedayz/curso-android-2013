@@ -123,5 +123,7 @@
         android:gravity="center_vertical|center_horizontal"
         android:onClick="stopUpdates"
         android:text="@string/stop_updates" />
+    
+    
 
 </RelativeLayout>
