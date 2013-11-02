@@ -6,10 +6,12 @@ import pe.joedayz.registroalumnosasincrono.dao.AlumnoDAO;
 import pe.joedayz.registroalumnosasincrono.modelo.Alumno;
 import pe.joedayz.registroalumnosasincrono.util.AlumnoConverter;
 import pe.joedayz.registroalumnosasincrono.util.WebClient;
+import task.EnviaAlumnosTask;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -112,26 +114,12 @@ public class ListaAlumnosActivity extends Activity {
 			startActivity(irParaFormulario);
 			break;
 		case R.id.enviar_alumnos:
-			String urlServer = "http://www.caelum.com.br/mobile";
 
-			AlumnoDAO dao = new AlumnoDAO(this);
-			List<Alumno> alumnos = dao.getLista();
-			dao.close();
-
-			
-			String datosJSON = 
-					new AlumnoConverter().toJSON(alumnos);
-			
-			
-			WebClient client = new WebClient(urlServer);
-			
-			String respuestaJSON = client.post(datosJSON);
-			
-			Toast.makeText(this, respuestaJSON,
-					Toast.LENGTH_LONG).show();
-			
+			EnviaAlumnosTask task = 
+						new EnviaAlumnosTask(this);
+			task.execute();
 			break;
-			
+
 		default:
 			break;
 		}
