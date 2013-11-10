@@ -42,6 +42,7 @@ public class ListaAlumnosAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		
 		Alumno alumno = alumnos.get(position);
 
 		LayoutInflater inflater = activity.getLayoutInflater();
@@ -62,6 +63,17 @@ public class ListaAlumnosAdapter extends BaseAdapter {
 					getDrawable(R.drawable.ic_no_imagen);
 			foto.setImageDrawable(sinFoto );
 		}
+		
+		TextView telefono = (TextView) linea.findViewById(R.id.telefono);
+		if(telefono!= null){
+			telefono.setText(alumno.getTelefono());			
+		}
+		
+		TextView site = (TextView) linea.findViewById(R.id.site);
+		if(site!=null){
+			site.setText(alumno.getSite());			
+		}
+		
 		return linea;
 	}
 
