@@ -1,14 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pe.joedayz.registroalumnosfragmentos"
     android:versionCode="1"
     android:versionName="1.0" >
 
-
-  <uses-sdk
+    <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
- <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
@@ -32,6 +32,10 @@
             android:name="pe.joedayz.registroalumnosfragmentos.FormularioActivity"
             android:label="@string/title_activity_formulario" >
         </activity>
+        <activity
+            android:name="pe.joedayz.registroalumnosfragmentos.Pruebas"
+            android:label="@string/title_activity_pruebas" >
+        </activity>
 
         <receiver
             android:name="pe.joedayz.registroalumnosfragmentos.SMSReceiver"
@@ -40,6 +44,11 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="pe.joedayz.registroalumnosfragmentos.PruebasActivity"
+            android:label="@string/title_activity_pruebas" >
+        </activity>
     </application>
 
 </manifest>

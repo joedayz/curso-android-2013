@@ -4,6 +4,7 @@ import java.util.List;
 
 import pe.joedayz.registroalumnosfragmentos.dao.AlumnoDAO;
 import pe.joedayz.registroalumnosfragmentos.modelo.Alumno;
+import pe.joedayz.registroalumnosfragmentos.modelo.Prueba;
 import pe.joedayz.registroalumnosfragmentos.task.EnviaAlumnosTask;
 import android.app.Activity;
 import android.content.Intent;
@@ -108,6 +109,11 @@ public class ListaAlumnosActivity extends Activity {
 		case R.id.nuevo:
 			Intent irParaFormulario = new Intent(this, FormularioActivity.class);
 			startActivity(irParaFormulario);
+			break;
+			
+		case R.id.recibir_pruebas:
+			Intent irParaPruebas = new Intent(this, PruebasActivity.class);
+			startActivity(irParaPruebas);
 			break;
 		case R.id.enviar_alumnos:
 
