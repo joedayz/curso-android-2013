@@ -8,6 +8,7 @@ import pe.joedayz.registroalumnosasincrono.modelo.Alumno;
 import pe.joedayz.registroalumnosasincrono.util.AlumnoConverter;
 import pe.joedayz.registroalumnosasincrono.util.WebClient;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,11 +16,18 @@ import android.widget.Toast;
 public class EnviaAlumnosTask extends AsyncTask<Integer, Double, String> {
 
 	private Activity context;
+	private ProgressDialog progress;
 
 	public EnviaAlumnosTask(Activity context) {
 		this.context = context;
 	}
 
+	@Override
+	protected void onPreExecute() {
+		progress = ProgressDialog.show(context, "Espere...",
+				"Enviando datos a la web", true, true);
+	}
+	
 	@Override
 	protected String doInBackground(Integer... params) {
 
@@ -41,7 +49,7 @@ public class EnviaAlumnosTask extends AsyncTask<Integer, Double, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
-
+		progress.dismiss();
 		Toast.makeText(context, result,
 				Toast.LENGTH_LONG).show();
 
