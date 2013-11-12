@@ -4,6 +4,7 @@ package pe.joedayz.registroalumnosfragmentos.fragment;
 import java.util.Arrays;
 import java.util.List;
 
+import pe.joedayz.registroalumnosfragmentos.PruebasActivity;
 import pe.joedayz.registroalumnosfragmentos.R;
 import pe.joedayz.registroalumnosfragmentos.modelo.Prueba;
 import android.os.Bundle;
@@ -12,11 +13,16 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListaPruebasFragment extends Fragment {
 
+	ListView listaViewEnPruebas;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -26,8 +32,8 @@ public class ListaPruebasFragment extends Fragment {
 				container, false);
 		
 		
-		ListView listaViewEnPruebas = (ListView) 
-				listaDePruebas.findViewById(R.id.pruebas);
+		listaViewEnPruebas = (ListView) 
+				listaDePruebas.findViewById(R.id.pruebasinside);
 		
 		Prueba prueba1 = new Prueba("20/11/2013", "Calculo");
 		prueba1.setTopicos(Arrays.asList("Algebra lineal", "Integrales",
@@ -46,7 +52,25 @@ public class ListaPruebasFragment extends Fragment {
 		listaViewEnPruebas.setAdapter(adapter);
 		
 		
+		this.listaViewEnPruebas.setOnItemClickListener(
+                new OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> adapter, View view,
+                    int posicao, long id) {
+                    Prueba selecionada = 
+                        (Prueba) adapter.getItemAtPosition(posicao);
+
+                        PruebasActivity calendarioPruebas = 
+                            (PruebasActivity) getActivity();
+                        
+                        calendarioPruebas.seleccionarPrueba(selecionada);
+                }
+            });
 		
 		return listaDePruebas;
 	}
+	
+
+	
 }

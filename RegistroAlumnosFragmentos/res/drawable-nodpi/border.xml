@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- crea linea con bordes redondeados -->
+    <stroke
+        android:width="5dp"
+        android:color="#D4D4D4" />
+
+    <corners android:radius="15dp" />
+
+    <!-- color de fondo -->
+    <solid android:color="#6B6B6B" />
+
+    <!-- Espacio entre contenido y borde -->
+    <padding
+        android:bottom="15dp"
+        android:left="15dp"
+        android:right="15dp"
+        android:top="15dp" />
+
+</shape>
