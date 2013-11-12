@@ -13,7 +13,8 @@ import pe.joedayz.registroalumnosenclase.modelo.Alumno;
 
 public class AlumnoDAO extends SQLiteOpenHelper{
 
-	private static final String DATABASE = "RegistroAlumnosEnClase";
+	private static final String DATABASE 
+			= "RegistroAlumnosEnClase";
 	private static final int VERSION = 2;
 
 	public AlumnoDAO(Context context) {

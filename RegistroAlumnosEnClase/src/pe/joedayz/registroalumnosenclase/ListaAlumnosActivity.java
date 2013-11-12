@@ -48,26 +48,26 @@ public class ListaAlumnosActivity extends Activity {
 			}
 			
 		});
-		lista.setOnItemLongClickListener(new OnItemLongClickListener() {
-
-			
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?>
-					adapter, View view,
-					int posicion, long id) {
-				alumno = (Alumno) adapter.getItemAtPosition(posicion);
-				Toast.makeText(ListaAlumnosActivity.this,
-						"Clic largo en " + 
-				alumno, 
-				Toast.LENGTH_SHORT).show();
-				return false;
-			}
-		
-
-	
-			
-		});		
+//		lista.setOnItemLongClickListener(new OnItemLongClickListener() {
+//
+//			
+//
+//			@Override
+//			public boolean onItemLongClick(AdapterView<?>
+//					adapter, View view,
+//					int posicion, long id) {
+//				alumno = (Alumno) adapter.getItemAtPosition(posicion);
+//				Toast.makeText(ListaAlumnosActivity.this,
+//						"Clic largo en " + 
+//				alumno, 
+//				Toast.LENGTH_SHORT).show();
+//				return false;
+//			}
+//		
+//
+//	
+//			
+//		});		
 	}
 
 	
@@ -86,7 +86,8 @@ public class ListaAlumnosActivity extends Activity {
 		dao.close();
 
 		int layout = android.R.layout.simple_list_item_1;
-		ArrayAdapter<Alumno> adapter = new ArrayAdapter<Alumno>(this, layout,
+		ArrayAdapter<Alumno> adapter = 
+				new ArrayAdapter<Alumno>(this, layout,
 				alumnos);
 
 		lista.setAdapter(adapter);
@@ -108,7 +109,8 @@ public class ListaAlumnosActivity extends Activity {
 		int itemSeleccionado = item.getItemId();
 		switch (itemSeleccionado) {
 		case R.id.nuevo:
-			Intent irParaFormulario = new Intent(this, FormularioActivity.class);
+			Intent irParaFormulario =
+			new Intent(this, FormularioActivity.class);
 			startActivity(irParaFormulario);
 			break;
 
