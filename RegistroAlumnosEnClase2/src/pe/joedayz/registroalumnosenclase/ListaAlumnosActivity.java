@@ -48,26 +48,7 @@ public class ListaAlumnosActivity extends Activity {
 			}
 			
 		});
-		lista.setOnItemLongClickListener(new OnItemLongClickListener() {
-
-			
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?>
-					adapter, View view,
-					int posicion, long id) {
-				alumno = (Alumno) adapter.getItemAtPosition(posicion);
-				Toast.makeText(ListaAlumnosActivity.this,
-						"Clic largo en " + 
-				alumno, 
-				Toast.LENGTH_SHORT).show();
-				return false;
-			}
-		
-
 	
-			
-		});		
 	}
 
 	

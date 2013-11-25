@@ -1,9 +1,9 @@
-package pe.joedayz.registroalumnosfragmentos;
+package pe.joedayz.googlemapsgps;
 
 import java.io.File;
 
-import pe.joedayz.registroalumnosfragmentos.dao.AlumnoDAO;
-import pe.joedayz.registroalumnosfragmentos.modelo.Alumno;
+import pe.joedayz.googlemapsgps.dao.AlumnoDAO;
+import pe.joedayz.googlemapsgps.modelo.Alumno;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
