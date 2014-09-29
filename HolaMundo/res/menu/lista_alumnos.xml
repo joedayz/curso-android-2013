@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pe.joedayz.holamundo.Formulario" >
+
+    <item
+        android:id="@+id/nuevo"
+        	android:icon="@drawable/ic_nuevo"
+        android:title="Nuevo"/>
+
+    <item
+        android:id="@+id/mapa"
+        android:icon="@drawable/ic_mapa"
+        android:title="Mapa"/>
+    
+    <item
+        android:id="@+id/enviar_alumnos"
+        android:icon="@drawable/ic_enviar"
+        android:title="Sincronizar"/>    
+        
+    <item
+        android:id="@+id/recibir_pruebas"
+        android:icon="@drawable/ic_recibir"
+        android:title="Descargar Pruebas"/>  
+        
+    <item
+        android:id="@+id/preferencias"
+        android:icon="@drawable/ic_preferencias"
+        android:title="Preferencias"/>      
+	
+</menu>
